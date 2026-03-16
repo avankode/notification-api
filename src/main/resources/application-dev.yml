@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_LOCAL_HOST}:${DB_LOCAL_PORT}/${DB_LOCAL_NAME}?sslmode=disable
+    username: ${DB_LOCAL_USER}
+    password: ${DB_LOCAL_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  rabbitmq:
+    host: ${RABBITMQ_LOCAL_HOST}
+    port: ${RABBITMQ_LOCAL_PORT}
+    username: ${RABBITMQ_LOCAL_USER}
+    password: ${RABBITMQ_LOCAL_PASSWORD}
