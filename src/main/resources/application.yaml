@@ -2,4 +2,4 @@ spring:
   application:
     name: notifcation-api
   profiles:
-    active: dev
+    active: ${SPRING_PROFILES_ACTIVE:dev}

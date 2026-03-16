@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_LOCAL_HOST}:${DB_LOCAL_PORT}/${DB_LOCAL_NAME}?sslmode=disable
+    url: jdbc:postgresql://notification_db:5432/notification_platform?sslmode=disable
     username: ${DB_LOCAL_USER}
     password: ${DB_LOCAL_PASSWORD}
     driver-class-name: org.postgresql.Driver
