@@ -1,9 +1,12 @@
 package com.avaneesh.notifcation_api.controller;
 
 import com.avaneesh.notifcation_api.config.RabbitMQConfig;
+import com.avaneesh.notifcation_api.dto.NotificationRequestDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/notifications")
 public class NotificationController {
@@ -16,10 +19,10 @@ public class NotificationController {
     }
 
     @PostMapping("/send")
-    public String sendNotification(@RequestBody String message) {
-        // Send the message payload exactly to our named queue
-        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, message);
-        return "Successfully dropped message into queue: " + message;
+    public String sendNotification(@RequestBody NotificationRequestDTO request) {
+        // We are now sending the whole object!
+        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, request);
+        log.info("Successfully queued notification for: " + request.getRecipientEmail());
+        return "Successfully queued notification for: " + request.getRecipientEmail();
     }
-
 }
