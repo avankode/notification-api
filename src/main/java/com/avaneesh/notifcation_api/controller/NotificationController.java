@@ -1,11 +1,8 @@
-package controller;
+package com.avaneesh.notifcation_api.controller;
 
-import config.RabbitMQConfig;
+import com.avaneesh.notifcation_api.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/notifications")
@@ -24,4 +21,5 @@ public class NotificationController {
         rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, message);
         return "Successfully dropped message into queue: " + message;
     }
+
 }

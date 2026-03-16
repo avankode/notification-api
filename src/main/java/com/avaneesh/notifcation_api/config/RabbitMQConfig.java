@@ -1,4 +1,4 @@
-package config;
+package com.avaneesh.notifcation_api.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
