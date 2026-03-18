@@ -13,8 +13,6 @@ import java.util.Map;
 @Component
 public class ApiKeyFilter extends OncePerRequestFilter {
 
-    // Simulating a database of valid API keys.
-    // In a massive production system, you would check this against Redis or PostgreSQL!
     private static final Map<String, String> VALID_API_KEYS = Map.of(
             "key_live_ecommerce123", "ecommerce-tenant",
             "key_live_hrapp456", "hr-tenant"
