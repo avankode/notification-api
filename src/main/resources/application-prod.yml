@@ -9,5 +9,4 @@ spring:
     addresses: ${RABBITMQ_URL}
 
   redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
+    url: ${REDIS_URL}

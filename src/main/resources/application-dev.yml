@@ -12,5 +12,4 @@ spring:
     password: guest
 
   redis:
-    host: localhost
-    port: 6379
+    url : redis://localhost:6379
