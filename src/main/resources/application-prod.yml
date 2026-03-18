@@ -8,5 +8,6 @@ spring:
   rabbitmq:
     addresses: ${RABBITMQ_URL}
 
-  redis:
-    url: ${REDIS_URL}
+  data:
+    redis:
+      url: ${REDIS_URL}

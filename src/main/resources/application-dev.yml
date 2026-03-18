@@ -11,5 +11,6 @@ spring:
     username: guest
     password: guest
 
-  redis:
-    url : redis://localhost:6379
+  data:
+    redis:
+      url : redis://localhost:6379
