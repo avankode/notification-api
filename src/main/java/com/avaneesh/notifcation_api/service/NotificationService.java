@@ -20,30 +20,29 @@ public class NotificationService {
 
     public NotificationResponse processNotification(String tenantId, NotificationRequestDTO request) {
 
-        // 1️⃣ Rate limiting
+        //  Rate limiting
         if (!rateLimitingService.isAllowed(tenantId)) {
-            log.warn("🚨 RATE LIMIT EXCEEDED for tenant: {}", tenantId);
+            log.warn(" RATE LIMIT EXCEEDED for tenant: {}", tenantId);
             return new NotificationResponse(
                     HttpStatus.TOO_MANY_REQUESTS,
                     "429 Too Many Requests: You have exceeded your limit."
             );
         }
 
-        // 2️⃣ Deduplication
+        //  Deduplication
         if (idempotencyService.isDuplicate(tenantId, request)) {
-            log.warn("♻️ DUPLICATE DETECTED for tenant: {}", tenantId);
+            log.warn("♻ DUPLICATE DETECTED for tenant: {}", tenantId);
             return new NotificationResponse(
                     HttpStatus.OK,
                     "Duplicate request detected and safely ignored."
             );
         }
 
-        // 3️⃣ Process request
         request.setTenantId(tenantId);
 
         rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, request);
 
-        log.info("✅ Notification queued for tenant: {}, recipient: {}", tenantId, request.getRecipient());
+        log.info(" Notification queued for tenant: {}, recipient: {}", tenantId, request.getRecipient());
 
         return new NotificationResponse(
                 HttpStatus.OK,

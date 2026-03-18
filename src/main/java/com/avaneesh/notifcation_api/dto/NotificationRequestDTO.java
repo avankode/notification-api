@@ -14,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class NotificationRequestDTO implements Serializable {
 
+    private String webhookUrl;
     private String tenantId;
     private String channel;
     private String recipient;
